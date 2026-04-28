@@ -1,4 +1,4 @@
-import Script from "next/script";
+import { InstagramEmbedLoader } from "./InstagramEmbedLoader";
 
 export function Gallery() {
   return (
@@ -13,7 +13,7 @@ export function Gallery() {
             Se de seneste glimt fra caféen, menuen og hverdagen på Nørrebrogade.
           </p>
         </div>
-        <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
+        <InstagramEmbedLoader />
         <div className="instagram-feed">
           <div
             className="elfsight-app-c7719fee-bacf-404a-b9b2-0d4801af0519"

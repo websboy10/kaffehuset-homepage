@@ -32,7 +32,7 @@ export function MenuPreview() {
             </div>
           </ScrollReveal>
         </div>
-        <ScrollReveal>
+        <ScrollReveal className="menu-image-reveal">
           <div className="menu-image-wrap">
             <Image
               src="/assets/brunch-og-kaffe.jpg"
