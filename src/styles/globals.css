@@ -308,17 +308,17 @@ h3 {
 .site-header {
   position: fixed;
   z-index: 100;
-  top: 0;
+  top: 18px;
   left: 0;
   right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: clamp(190px, 24vw, 360px);
-  padding: clamp(22px, 4vw, 48px) clamp(16px, 4vw, 64px);
+  height: 96px;
+  padding: 0 clamp(16px, 4vw, 64px);
   pointer-events: none;
-  transition: background var(--duration-normal) ease,
-              min-height var(--duration-normal) var(--ease-out-expo),
+  transition: top var(--duration-normal) var(--ease-out-expo),
+              height var(--duration-normal) var(--ease-out-expo),
               padding var(--duration-normal) ease,
               backdrop-filter var(--duration-normal) ease;
 }
@@ -326,25 +326,24 @@ h3 {
 .site-header::before {
   content: '';
   position: absolute;
-  inset: 0;
+  top: -18px;
+  left: 0;
+  right: 0;
+  height: 160px;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(13, 11, 9, 0.92) 0%, rgba(13, 11, 9, 0.58) 42%, transparent 74%);
-  opacity: 0.85;
+    linear-gradient(180deg, rgba(13, 11, 9, 0.68) 0%, rgba(13, 11, 9, 0.22) 56%, transparent 100%);
+  opacity: 1;
   pointer-events: none;
   transition: opacity var(--duration-normal) ease;
 }
 
 .site-header.scrolled {
-  min-height: clamp(150px, 18vw, 280px);
-  padding-top: clamp(14px, 2vw, 28px);
-  padding-bottom: clamp(14px, 2vw, 28px);
-  background: rgba(13, 11, 9, 0.72);
-  backdrop-filter: blur(20px) saturate(1.2);
-  border-bottom: 1px solid var(--color-border);
+  top: 10px;
+  height: 78px;
 }
 
 .site-header.scrolled::before {
-  opacity: 0.35;
+  opacity: 0.72;
 }
 
 .brand-link {
@@ -352,27 +351,55 @@ h3 {
   align-items: center;
   justify-content: center;
   z-index: 2;
+  width: clamp(128px, 13vw, 184px);
+  min-height: 74px;
+  border: 1px solid rgba(245, 239, 230, 0.16);
+  border-radius: 8px;
+  padding: 10px 18px 12px;
+  background:
+    linear-gradient(180deg, rgba(26, 22, 20, 0.82), rgba(13, 11, 9, 0.62));
+  box-shadow:
+    0 18px 48px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px) saturate(1.12);
   pointer-events: auto;
+  transition: width var(--duration-normal) var(--ease-out-expo),
+              min-height var(--duration-normal) var(--ease-out-expo),
+              padding var(--duration-normal) var(--ease-out-expo),
+              border-color var(--duration-fast) ease,
+              background var(--duration-normal) ease,
+              box-shadow var(--duration-normal) ease,
+              transform var(--duration-normal) var(--ease-out-expo);
+}
+
+.site-header.scrolled .brand-link {
+  width: clamp(112px, 11vw, 154px);
+  min-height: 58px;
+  padding: 7px 15px 9px;
+  background:
+    linear-gradient(180deg, rgba(26, 22, 20, 0.92), rgba(13, 11, 9, 0.76));
 }
 
 .brand-mark {
-  width: clamp(190px, 24vw, 380px);
+  width: 100%;
   height: auto;
-  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.45))
-          drop-shadow(0 0 28px rgba(199, 146, 82, 0.16));
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.28));
   transition: filter var(--duration-normal) ease,
-              transform var(--duration-normal) var(--ease-out-expo),
-              width var(--duration-normal) var(--ease-out-expo);
-}
-
-.site-header.scrolled .brand-mark {
-  width: clamp(160px, 18vw, 300px);
+              transform var(--duration-normal) var(--ease-out-expo);
 }
 
 .brand-link:hover .brand-mark {
-  transform: scale(1.035);
-  filter: drop-shadow(0 28px 58px rgba(0, 0, 0, 0.5))
-          drop-shadow(0 0 38px rgba(224, 185, 122, 0.22));
+  transform: scale(1.025);
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.36));
+}
+
+.brand-link:hover {
+  border-color: rgba(224, 185, 122, 0.36);
+  box-shadow:
+    0 22px 56px rgba(0, 0, 0, 0.38),
+    0 0 34px rgba(199, 146, 82, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
 }
 
 .header-nav {
@@ -1259,18 +1286,32 @@ h3 {
   .section-shell { width: min(calc(100% - 24px), var(--max-width)); }
 
   .site-header {
-    min-height: 210px;
-    padding: 24px 16px 18px;
+    top: 12px;
+    height: 74px;
+    padding: 0 12px;
   }
 
   .site-header.scrolled {
-    min-height: 168px;
-    padding: 18px 16px 14px;
+    top: 8px;
+    height: 64px;
   }
 
-  .brand-mark { width: min(76vw, 260px); }
+  .site-header::before {
+    top: -12px;
+    height: 122px;
+  }
 
-  .site-header.scrolled .brand-mark { width: min(66vw, 220px); }
+  .brand-link {
+    width: 118px;
+    min-height: 56px;
+    padding: 7px 13px 8px;
+  }
+
+  .site-header.scrolled .brand-link {
+    width: 104px;
+    min-height: 48px;
+    padding: 6px 12px 7px;
+  }
 
   .hero-title {
     font-size: clamp(3rem, 14vw, 4.5rem);
