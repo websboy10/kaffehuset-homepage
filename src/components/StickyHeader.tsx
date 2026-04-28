@@ -1,21 +1,11 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { HeaderScrollClass } from "./HeaderScrollClass";
 
 export function StickyHeader() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <header className={`site-header ${scrolled ? "scrolled" : ""}`} aria-label="Kaffehuset">
+    <header id="site-header" className="site-header" aria-label="Kaffehuset">
+      <HeaderScrollClass />
       <Link href="#top" className="brand-link" aria-label="Kaffehuset forside">
         <Image
           src="/assets/new-logo.webp"
@@ -23,6 +13,7 @@ export function StickyHeader() {
           width={1024}
           height={747}
           className="brand-mark"
+          sizes="(max-width: 640px) 118px, 184px"
           priority
         />
       </Link>

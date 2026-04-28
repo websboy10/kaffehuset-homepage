@@ -1,6 +1,19 @@
 import type { Metadata } from "next";
+import { Inter, Playfair_Display } from "next/font/google";
 import "@/styles/globals.css";
 import { siteContent } from "@/data/siteContent";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap"
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap"
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteContent.canonicalUrl),
@@ -31,11 +44,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="da">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
+    <html lang="da" className={`${inter.variable} ${playfair.variable}`}>
       <body>{children}</body>
     </html>
   );

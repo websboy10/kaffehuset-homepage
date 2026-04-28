@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { revealImages } from "@/data/revealImages";
 
 const layout = [
@@ -23,13 +23,35 @@ function clamp(value: number, min = 0, max = 1) {
 
 export function ImageRevealWall() {
   const sectionRef = useRef<HTMLElement>(null);
+  const wallRef = useRef<HTMLDivElement>(null);
+  const tileRefs = useRef<Array<HTMLElement | null>>([]);
   const targetProgress = useRef(0);
   const currentProgress = useRef(0);
   const frame = useRef<number | null>(null);
-  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let isActive = false;
+
+    const applyProgress = (progress: number) => {
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const scale = 2.55 - eased * 1.55;
+
+      if (wallRef.current) {
+        wallRef.current.style.transform = `translate3d(-50%, -50%, 0) scale(${scale})`;
+      }
+
+      tileRefs.current.forEach((tile, index) => {
+        if (!tile) return;
+
+        const item = layout[index];
+        const reveal = item.hero ? 1 : clamp((eased - 0.12) / 0.58);
+        const drift = 1 - reveal;
+
+        tile.style.opacity = item.hero ? "1" : String(reveal);
+        tile.style.transform = `translate3d(${item.dx * drift}px, ${item.dy * drift}px, 0)`;
+      });
+    };
 
     const updateTarget = () => {
       const section = sectionRef.current;
@@ -41,11 +63,16 @@ export function ImageRevealWall() {
 
       if (reduceMotion) {
         currentProgress.current = targetProgress.current;
-        setProgress(targetProgress.current);
+        applyProgress(targetProgress.current);
       }
     };
 
     const animate = () => {
+      if (!isActive) {
+        frame.current = null;
+        return;
+      }
+
       const delta = targetProgress.current - currentProgress.current;
       currentProgress.current += delta * 0.09;
 
@@ -53,61 +80,83 @@ export function ImageRevealWall() {
         currentProgress.current = targetProgress.current;
       }
 
-      setProgress(currentProgress.current);
+      applyProgress(currentProgress.current);
       frame.current = window.requestAnimationFrame(animate);
     };
 
+    const start = () => {
+      if (reduceMotion || frame.current) return;
+      frame.current = window.requestAnimationFrame(animate);
+    };
+
+    const stop = () => {
+      if (!frame.current) return;
+      window.cancelAnimationFrame(frame.current);
+      frame.current = null;
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isActive = entry.isIntersecting;
+        updateTarget();
+
+        if (isActive) {
+          start();
+        } else {
+          stop();
+        }
+      },
+      { rootMargin: "120px 0px" }
+    );
+
     updateTarget();
+    applyProgress(currentProgress.current);
+    if (sectionRef.current) observer.observe(sectionRef.current);
     window.addEventListener("scroll", updateTarget, { passive: true });
     window.addEventListener("resize", updateTarget);
 
-    if (!reduceMotion) {
-      frame.current = window.requestAnimationFrame(animate);
-    }
-
     return () => {
+      observer.disconnect();
       window.removeEventListener("scroll", updateTarget);
       window.removeEventListener("resize", updateTarget);
-      if (frame.current) window.cancelAnimationFrame(frame.current);
+      stop();
     };
   }, []);
-
-  const eased = 1 - Math.pow(1 - progress, 3);
-  const scale = 2.55 - eased * 1.55;
 
   return (
     <section ref={sectionRef} className="image-reveal-section" aria-label="Stemningsbilleder fra Kaffehuset">
       <div className="image-reveal-sticky">
         <div
+          ref={wallRef}
           className="image-reveal-wall"
           style={{
-            transform: `translate3d(-50%, -50%, 0) scale(${scale})`
+            transform: "translate3d(-50%, -50%, 0) scale(2.55)"
           }}
         >
           {revealImages.map((image, index) => {
             const item = layout[index];
-            const reveal = item.hero ? 1 : clamp((eased - 0.12) / 0.58);
-            const drift = 1 - reveal;
 
             return (
               <figure
                 className={`image-reveal-tile${item.hero ? " image-reveal-tile-main" : ""}`}
                 key={image.src}
+                ref={(node) => {
+                  tileRefs.current[index] = node;
+                }}
                 style={{
                   left: `${item.x}%`,
                   top: `${item.y}%`,
                   width: `${item.w}%`,
                   height: `${item.h}%`,
-                  opacity: item.hero ? 1 : reveal,
-                  transform: `translate3d(${item.dx * drift}px, ${item.dy * drift}px, 0)`
+                  opacity: item.hero ? 1 : 0,
+                  transform: `translate3d(${item.dx}px, ${item.dy}px, 0)`
                 }}
               >
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
-                  sizes={item.hero ? "90vw" : "(max-width: 640px) 44vw, 28vw"}
-                  priority={item.hero}
+                  sizes={item.hero ? "(max-width: 640px) 90vw, 58vw" : "(max-width: 640px) 44vw, 28vw"}
                 />
               </figure>
             );

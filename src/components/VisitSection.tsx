@@ -1,50 +1,9 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { mapUrl, phoneHref, siteContent } from "@/data/siteContent";
 import { ScrollReveal } from "./ScrollReveal";
-
-function getOpenStatus(): { isOpen: boolean; label: string } {
-  const now = new Date();
-  const day = now.getDay(); // 0=Sun,1=Mon...6=Sat
-  const hour = now.getHours();
-  const minute = now.getMinutes();
-  const time = hour * 60 + minute;
-
-  // Cafe hours
-  const schedule: Record<number, [number, number]> = {
-    0: [9 * 60, 23 * 60],  // Sunday
-    1: [8 * 60, 23 * 60],  // Monday
-    2: [8 * 60, 23 * 60],
-    3: [8 * 60, 23 * 60],
-    4: [8 * 60, 23 * 60],
-    5: [8 * 60, 24 * 60],  // Friday
-    6: [9 * 60, 24 * 60],  // Saturday
-  };
-
-  const [open, close] = schedule[day] || [8 * 60, 23 * 60];
-
-  if (time >= open && time < close) {
-    const minsLeft = close - time;
-    if (minsLeft <= 60) {
-      return { isOpen: true, label: `Lukker om ${minsLeft} min` };
-    }
-    return { isOpen: true, label: "Åben nu" };
-  }
-
-  return { isOpen: false, label: "Lukket nu" };
-}
+import { VisitStatusBadge } from "./VisitStatusBadge";
 
 export function VisitSection() {
-  const [status, setStatus] = useState<{ isOpen: boolean; label: string }>({ isOpen: false, label: "" });
-
-  useEffect(() => {
-    setStatus(getOpenStatus());
-    const interval = setInterval(() => setStatus(getOpenStatus()), 60_000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section className="section visit-section" id="besog" aria-labelledby="visit-title">
       <div className="section-shell visit-layout">
@@ -69,14 +28,9 @@ export function VisitSection() {
             </address>
           </ScrollReveal>
 
-          {status.label && (
-            <ScrollReveal delay={3}>
-              <div className={`status-badge ${status.isOpen ? "open" : "closed"}`}>
-                <span className="status-dot" />
-                {status.label}
-              </div>
-            </ScrollReveal>
-          )}
+          <ScrollReveal delay={3}>
+            <VisitStatusBadge />
+          </ScrollReveal>
 
           <ScrollReveal delay={4}>
             <div className="visit-actions">

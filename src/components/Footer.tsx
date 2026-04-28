@@ -10,7 +10,13 @@ export function Footer() {
       <div className="section-shell footer-layout">
         <div>
           <Link href="#top" className="footer-brand" aria-label="Til toppen af Kaffehuset">
-            <Image src="/assets/new-logo.webp" alt="Kaffehuset logo" width={1024} height={747} />
+            <Image
+              src="/assets/new-logo.webp"
+              alt="Kaffehuset logo"
+              width={1024}
+              height={747}
+              sizes="96px"
+            />
             <span>{siteContent.name}</span>
           </Link>
           <p>{siteContent.description}</p>
