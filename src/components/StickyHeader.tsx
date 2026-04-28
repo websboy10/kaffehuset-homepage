@@ -3,11 +3,9 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { mapUrl, phoneHref, siteContent } from "@/data/siteContent";
 
 export function StickyHeader() {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -17,7 +15,7 @@ export function StickyHeader() {
   }, []);
 
   return (
-    <header className={`site-header ${scrolled ? "scrolled" : ""}`} aria-label="Primær navigation">
+    <header className={`site-header ${scrolled ? "scrolled" : ""}`} aria-label="Kaffehuset">
       <Link href="#top" className="brand-link" aria-label="Kaffehuset forside">
         <Image
           src="/assets/new-logo.webp"
@@ -28,39 +26,6 @@ export function StickyHeader() {
           priority
         />
       </Link>
-
-      <nav className="header-nav" aria-label="Hovednavigation">
-        {siteContent.navigation.map((item) => (
-          <a key={item.href} href={item.href}>
-            {item.label}
-          </a>
-        ))}
-      </nav>
-
-      <div className="header-actions">
-        <a
-          className="header-call"
-          href={phoneHref}
-          aria-label={`Ring til Kaffehuset på ${siteContent.phone}`}
-        >
-          Ring
-        </a>
-        <Link className="header-cta" href={mapUrl} target="_blank" rel="noreferrer">
-          Find vej
-        </Link>
-        <button
-          className="menu-toggle"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Åbn menu"
-          aria-expanded={menuOpen}
-        >
-          <span className="menu-toggle-lines">
-            <span className="menu-toggle-line" />
-            <span className="menu-toggle-line" />
-            <span className="menu-toggle-line" />
-          </span>
-        </button>
-      </div>
     </header>
   );
 }
