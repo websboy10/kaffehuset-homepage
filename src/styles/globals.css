@@ -1,37 +1,37 @@
 /* ═══════════════════════════════════════════════════════════════
    KAFFEHUSET — Brand Redesign
-   A warm, moody, luxury café experience
+   A soft beige, white, and brown café experience
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
   /* Core palette */
-  --color-bg: #0d0b09;
-  --color-bg-warm: #161210;
-  --color-bg-card: #1a1614;
-  --color-bg-elevated: #221e1a;
-  --color-surface: #2a2420;
-  --color-border: rgba(199, 146, 82, 0.12);
-  --color-border-strong: rgba(199, 146, 82, 0.25);
+  --color-bg: #f4eadc;
+  --color-bg-warm: #eadcc8;
+  --color-bg-card: #fffaf3;
+  --color-bg-elevated: #ffffff;
+  --color-surface: #deccb4;
+  --color-border: rgba(92, 57, 34, 0.16);
+  --color-border-strong: rgba(92, 57, 34, 0.32);
 
   /* Text */
-  --color-text: #f5efe6;
-  --color-text-secondary: rgba(245, 239, 230, 0.6);
-  --color-text-muted: rgba(245, 239, 230, 0.4);
+  --color-text: #3f2818;
+  --color-text-secondary: rgba(63, 40, 24, 0.72);
+  --color-text-muted: rgba(63, 40, 24, 0.5);
 
   /* Accent */
-  --color-gold: #c79252;
-  --color-gold-light: #e0b97a;
-  --color-gold-glow: rgba(199, 146, 82, 0.15);
-  --color-red: #a92432;
-  --color-red-soft: rgba(169, 36, 50, 0.15);
-  --color-cream: #f5efe6;
-  --color-warm-white: #faf6ef;
+  --color-gold: #6f472b;
+  --color-gold-light: #9a6a43;
+  --color-gold-glow: rgba(111, 71, 43, 0.15);
+  --color-red: #5c3922;
+  --color-red-soft: rgba(92, 57, 34, 0.15);
+  --color-cream: #3f2818;
+  --color-warm-white: #fffdf8;
 
   /* Effects */
-  --glow-gold: 0 0 60px rgba(199, 146, 82, 0.08);
-  --glow-gold-strong: 0 0 80px rgba(199, 146, 82, 0.15);
-  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
-  --shadow-elevated: 0 24px 64px rgba(0, 0, 0, 0.4);
+  --glow-gold: 0 0 60px rgba(111, 71, 43, 0.08);
+  --glow-gold-strong: 0 0 80px rgba(111, 71, 43, 0.15);
+  --shadow-card: 0 8px 32px rgba(92, 57, 34, 0.14), 0 2px 8px rgba(92, 57, 34, 0.1);
+  --shadow-elevated: 0 24px 64px rgba(92, 57, 34, 0.18);
 
   /* Layout */
   --radius-sm: 6px;
@@ -122,7 +122,7 @@ h1, h2, h3, h4, p { margin-top: 0; }
 .custom-cursor.hovering {
   width: 50px;
   height: 50px;
-  background: rgba(199, 146, 82, 0.1);
+  background: rgba(111, 71, 43, 0.1);
   border-color: var(--color-gold-light);
 }
 
@@ -269,7 +269,7 @@ h3 {
 }
 
 .button-primary:hover {
-  box-shadow: 0 8px 32px rgba(199, 146, 82, 0.3);
+  box-shadow: 0 8px 32px rgba(111, 71, 43, 0.22);
 }
 
 .button-secondary {
@@ -281,7 +281,7 @@ h3 {
 
 .button-secondary:hover {
   border-color: var(--color-gold);
-  background: rgba(199, 146, 82, 0.08);
+  background: rgba(111, 71, 43, 0.08);
 }
 
 .button-outline {
@@ -292,7 +292,7 @@ h3 {
 
 .button-outline:hover {
   border-color: var(--color-gold);
-  background: rgba(199, 146, 82, 0.06);
+  background: rgba(111, 71, 43, 0.06);
   box-shadow: var(--glow-gold);
 }
 
@@ -308,13 +308,13 @@ h3 {
 }
 
 .button-inverted {
-  background: var(--color-cream);
-  color: var(--color-bg);
+  background: var(--color-warm-white);
+  color: var(--color-text);
 }
 
 .button-inverted:hover {
   background: white;
-  box-shadow: 0 8px 32px rgba(245, 239, 230, 0.15);
+  box-shadow: 0 8px 32px rgba(92, 57, 34, 0.12);
 }
 
 /* ─── Header ─── */
@@ -344,7 +344,7 @@ h3 {
   right: 0;
   height: 160px;
   background:
-    linear-gradient(180deg, rgba(13, 11, 9, 0.68) 0%, rgba(13, 11, 9, 0.22) 56%, transparent 100%);
+    linear-gradient(180deg, rgba(92, 57, 34, 0.48) 0%, rgba(92, 57, 34, 0.16) 56%, transparent 100%);
   opacity: 1;
   pointer-events: none;
   transition: opacity var(--duration-normal) ease;
@@ -366,14 +366,14 @@ h3 {
   z-index: 2;
   width: clamp(128px, 13vw, 184px);
   min-height: 74px;
-  border: 1px solid rgba(245, 239, 230, 0.16);
+  border: 1px solid rgba(92, 57, 34, 0.18);
   border-radius: 8px;
   padding: 10px 18px 12px;
   background:
-    linear-gradient(180deg, rgba(26, 22, 20, 0.82), rgba(13, 11, 9, 0.62));
+    linear-gradient(180deg, rgba(255, 250, 243, 0.88), rgba(244, 234, 220, 0.72));
   box-shadow:
-    0 18px 48px rgba(0, 0, 0, 0.32),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 18px 48px rgba(92, 57, 34, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.56);
   backdrop-filter: blur(18px) saturate(1.12);
   pointer-events: auto;
   transition: width var(--duration-normal) var(--ease-out-expo),
@@ -390,13 +390,13 @@ h3 {
   min-height: 58px;
   padding: 7px 15px 9px;
   background:
-    linear-gradient(180deg, rgba(26, 22, 20, 0.92), rgba(13, 11, 9, 0.76));
+    linear-gradient(180deg, rgba(255, 250, 243, 0.94), rgba(244, 234, 220, 0.82));
 }
 
 .brand-mark {
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.28));
+  filter: drop-shadow(0 10px 20px rgba(92, 57, 34, 0.18));
   transform: scale(1.16);
   transform-origin: center;
   transition: filter var(--duration-normal) ease,
@@ -405,15 +405,15 @@ h3 {
 
 .brand-link:hover .brand-mark {
   transform: scale(1.19);
-  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.36));
+  filter: drop-shadow(0 14px 28px rgba(92, 57, 34, 0.22));
 }
 
 .brand-link:hover {
-  border-color: rgba(224, 185, 122, 0.36);
+  border-color: rgba(111, 71, 43, 0.36);
   box-shadow:
-    0 22px 56px rgba(0, 0, 0, 0.38),
-    0 0 34px rgba(199, 146, 82, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 22px 56px rgba(92, 57, 34, 0.2),
+    0 0 34px rgba(111, 71, 43, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.66);
   transform: translateY(-1px);
 }
 
@@ -438,8 +438,8 @@ h3 {
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(180deg, rgba(13, 11, 9, 0.3) 0%, rgba(13, 11, 9, 0.1) 30%, rgba(13, 11, 9, 0.7) 70%, rgba(13, 11, 9, 0.95) 100%),
-    linear-gradient(90deg, rgba(13, 11, 9, 0.8) 0%, transparent 60%);
+    linear-gradient(180deg, rgba(92, 57, 34, 0.18) 0%, rgba(92, 57, 34, 0.08) 30%, rgba(92, 57, 34, 0.58) 70%, rgba(92, 57, 34, 0.82) 100%),
+    linear-gradient(90deg, rgba(92, 57, 34, 0.72) 0%, transparent 60%);
 }
 
 .hero-content {
@@ -486,9 +486,30 @@ h3 {
 
 .hero-content p:not(.eyebrow) {
   max-width: 520px;
-  color: var(--color-text-secondary);
+  color: rgba(255, 250, 243, 0.84);
   font-size: clamp(1rem, 1.5vw, 1.15rem);
   line-height: 1.7;
+}
+
+.hero-section .eyebrow {
+  color: rgba(255, 250, 243, 0.9);
+}
+
+.hero-section .eyebrow::before {
+  background: rgba(255, 250, 243, 0.72);
+}
+
+.hero-actions .button-secondary,
+.hero-actions .button-call {
+  border-color: rgba(255, 250, 243, 0.42);
+  color: white;
+}
+
+.hero-actions .button-secondary:hover,
+.hero-actions .button-call:hover {
+  border-color: white;
+  background: rgba(255, 250, 243, 0.12);
+  color: white;
 }
 
 .hero-actions,
@@ -744,7 +765,7 @@ h3 {
   width: 600px;
   height: 600px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(199, 146, 82, 0.06), transparent 70%);
+  background: radial-gradient(circle, rgba(111, 71, 43, 0.06), transparent 70%);
   pointer-events: none;
 }
 
@@ -805,7 +826,7 @@ h3 {
   padding: 22px 24px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.42);
   transition: background var(--duration-normal) var(--ease-out-expo),
               border-color var(--duration-normal) var(--ease-out-expo),
               transform var(--duration-normal) var(--ease-out-expo);
@@ -814,7 +835,7 @@ h3 {
 
 .feature-list article:hover {
   border-color: var(--color-border-strong);
-  background: rgba(199, 146, 82, 0.04);
+  background: rgba(111, 71, 43, 0.06);
   transform: translateX(6px);
 }
 
@@ -845,7 +866,7 @@ h3 {
   height: 100svh;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 50% 45%, rgba(199, 146, 82, 0.06), transparent 50%),
+    radial-gradient(ellipse at 50% 45%, rgba(111, 71, 43, 0.06), transparent 50%),
     var(--color-bg);
   contain: layout paint;
 }
@@ -866,8 +887,8 @@ h3 {
   overflow: hidden;
   margin: 0;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.03);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 24px 64px rgba(92, 57, 34, 0.18);
   will-change: transform, opacity;
 }
 
@@ -952,8 +973,8 @@ h3 {
   left: 0;
   right: 0;
   padding: 48px 24px 24px;
-  background: linear-gradient(0deg, rgba(13,11,9,0.85), transparent);
-  color: var(--color-cream);
+  background: linear-gradient(0deg, rgba(92, 57, 34, 0.82), transparent);
+  color: white;
   font-family: var(--font-display);
   font-size: 1.1rem;
   font-style: italic;
@@ -1019,15 +1040,15 @@ h3 {
 }
 
 .status-badge.open {
-  background: rgba(76, 175, 80, 0.1);
-  border: 1px solid rgba(76, 175, 80, 0.25);
-  color: #81c784;
+  background: rgba(111, 71, 43, 0.1);
+  border: 1px solid rgba(111, 71, 43, 0.25);
+  color: var(--color-gold);
 }
 
 .status-badge.closed {
-  background: rgba(169, 36, 50, 0.1);
-  border: 1px solid rgba(169, 36, 50, 0.25);
-  color: #e57373;
+  background: rgba(92, 57, 34, 0.08);
+  border: 1px solid rgba(92, 57, 34, 0.22);
+  color: var(--color-text-secondary);
 }
 
 .status-dot {
@@ -1037,8 +1058,8 @@ h3 {
   animation: statusPulse 2s ease-in-out infinite;
 }
 
-.status-badge.open .status-dot { background: #81c784; }
-.status-badge.closed .status-dot { background: #e57373; }
+.status-badge.open .status-dot { background: var(--color-gold); }
+.status-badge.closed .status-dot { background: var(--color-text-muted); }
 
 @keyframes statusPulse {
   0%, 100% { opacity: 0.5; transform: scale(0.8); }
@@ -1239,12 +1260,12 @@ h3 {
     gap: 6px;
     min-height: 58px;
     padding: 6px;
-    border: 1px solid rgba(245, 239, 230, 0.16);
+    border: 1px solid rgba(92, 57, 34, 0.18);
     border-radius: 18px;
-    background: rgba(13, 11, 9, 0.86);
+    background: rgba(255, 250, 243, 0.9);
     box-shadow:
-      0 18px 44px rgba(0, 0, 0, 0.42),
-      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      0 18px 44px rgba(92, 57, 34, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.66);
     backdrop-filter: blur(18px) saturate(1.12);
   }
 
@@ -1325,8 +1346,8 @@ h3 {
 
   .hero-overlay {
     background:
-      linear-gradient(180deg, rgba(13, 11, 9, 0.16) 0%, rgba(13, 11, 9, 0.24) 35%, rgba(13, 11, 9, 0.78) 72%, rgba(13, 11, 9, 0.98) 100%),
-      linear-gradient(90deg, rgba(13, 11, 9, 0.56) 0%, rgba(13, 11, 9, 0.12) 100%);
+      linear-gradient(180deg, rgba(92, 57, 34, 0.12) 0%, rgba(92, 57, 34, 0.22) 35%, rgba(92, 57, 34, 0.68) 72%, rgba(92, 57, 34, 0.88) 100%),
+      linear-gradient(90deg, rgba(92, 57, 34, 0.54) 0%, rgba(92, 57, 34, 0.12) 100%);
   }
 
   .hero-content {
@@ -1335,7 +1356,7 @@ h3 {
 
   .hero-content p:not(.eyebrow) {
     max-width: 100%;
-    color: rgba(245, 239, 230, 0.72);
+    color: rgba(255, 250, 243, 0.82);
     font-size: 1rem;
     line-height: 1.62;
   }
