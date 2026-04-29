@@ -9,7 +9,6 @@ import { ImageRevealController } from "@/components/ImageRevealController";
 import { ImageRevealWall } from "@/components/ImageRevealWall";
 import { Marquee } from "@/components/Marquee";
 import { MenuPreview } from "@/components/MenuPreview";
-import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { NoiseLayers } from "@/components/NoiseLayers";
 import { RevealController } from "@/components/RevealController";
 import { SEOJsonLd } from "@/components/SEOJsonLd";
@@ -40,7 +39,6 @@ export default function HomePage() {
         <VisitSection />
       </main>
       <Footer />
-      <MobileBottomNav />
     </>
   );
 }

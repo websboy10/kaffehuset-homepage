@@ -21,9 +21,6 @@ export function ImageRevealWall() {
         <div
           className="image-reveal-wall"
           data-image-reveal-wall
-          style={{
-            transform: "translate3d(-50%, -50%, 0) scale(2.55)"
-          }}
         >
           {revealImages.map((image, index) => {
             const item = layout[index];

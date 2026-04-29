@@ -5,7 +5,8 @@ import { useEffect } from "react";
 export function HeroEffects() {
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) return;
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+    if (reduceMotion || isTouchDevice) return;
 
     const section = document.querySelector<HTMLElement>(".hero-section");
     const image = section?.querySelector<HTMLElement>(".hero-image");
